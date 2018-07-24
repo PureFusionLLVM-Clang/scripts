@@ -25,7 +25,7 @@ else
 fi;
 
 export TOOLCHAIN_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
-export REMOTE_URL="https://github.com/llvm-mirror"
+export REMOTE_URL="https://github.com/PureFusionLLVM-Clang"
 
 ###########################################################################
 ###########################################################################
@@ -79,7 +79,7 @@ elif [ "$1" == "6" ]; then
 	export PFLLVM_LIB_VERSION="6.0.1";
 
 elif [ "$1" == "7" ]; then
-    export PFLLVM_BRANCH=master;
+    export PFLLVM_BRANCH=release_70;
 	export PFLLVM_VERSION=7;
 	export PFLLVM_LIB_VERSION="7.0.0";
 

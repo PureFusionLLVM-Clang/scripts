@@ -71,19 +71,19 @@ clean() {
 
 syncA() {
  cd $TOOLCHAIN_ROOT;
-  pushd llvm && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd ;
-  pushd llvm/tools/clang && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/tools/lld && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/tools/polly && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/projects/compiler-rt && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/projects/libcxx && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/projects/libcxxabi && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/projects/libunwind && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
-  pushd llvm/projects/openmp && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd ;
+  pushd llvm/tools/clang && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/tools/lld && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/tools/polly && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/projects/compiler-rt && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/projects/libcxx && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/projects/libcxxabi && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/projects/libunwind && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd llvm/projects/openmp && rm -rf * && git fetch pfllvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
         echo "NOTE: Removing: clang-tools-extra.git and recloning clang-tools-extra.git"
         rm -rf $TOOLCHAIN_ROOT/llvm/tools/clang/tools/extra
         git clone $REMOTE_URL/clang-tools-extra.git -b $PFLLVM_BRANCH $TOOLCHAIN_ROOT/llvm/tools/clang/tools/extra
-  pushd lvm/tools/clang/tools/extra && rm -rf * && git fetch llvm $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
+  pushd lvm/tools/clang/tools/extra && rm -rf * && git fetch origin $PFLLVM_BRANCH && git reset --hard FETCH_HEAD && popd;
 }
   
 finalize() {
@@ -96,7 +96,7 @@ finalize() {
   cp -R $TOOLCHAIN_ROOT/prebuilts/aosp_prebuilts/libclang/** $PREFIX_PATH/lib64/clang/$PFLLVM_LIB_VERSION/lib/linux/;
   # Copy stdatomic from bionic
   cp $TOOLCHAIN_ROOT/prebuilts/aosp_prebuilts/stdatomic.h $PREFIX_PATH/lib64/clang/$PFLLVM_LIB_VERSION/include/stdatomic.h;
-  cd $TOOLCHAIN_ROOT/out/$PFLLVM_DIRNAME/lib64/clang; ln -s $PFLLVM_LIB_VERSION $PFLLVM_VERSION; cd $TOOLCHAIN_ROOT/scripts
+  cd $TOOLCHAIN_ROOT/out/$PFLLVM_DIRNAME/lib64/clang; ln -s $PFLLVM_LIB_VERSION ${PFLLVM_VERSION}.0; cd $TOOLCHAIN_ROOT/scripts
 
   # Copy libfuzzer headers
   cp -R $TOOLCHAIN_ROOT/prebuilts/aosp_prebuilts/prebuilt_include $PREFIX_PATH/prebuilt_include;
